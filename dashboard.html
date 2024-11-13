@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>داشبورد</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css">
+    <!---->
+    <!--    Bootstrap Js-->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!---->
+    <!--    jquery-->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <!--    -->
+    <!--    font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!---->
+
+    <!--    global css style link -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <!---->
+
+    <!--    local js link-->
+    <script src="./assets/app.js"></script>
+    <!--    local js link-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink navbar-light" id="mainNav">
+        <div class="container-fluid mx-lg-5">
+            <a class="navbar-brand d-flex align-items-center " href="/">
+                <div class="logo d-flex ">
+                    <img class="logo-image" src="./assets/images/logo.png" alt="logo">
+                    <div class="d-flex flex-column logo-text">
+                        <span class=" text-uppercase d-flex">
+                            <strong class="text-warning">
+                                Magic
+                            </strong>
+                            <strong>
+                                shoroomp
+                            </strong>
+
+                        </span>
+                        <span class=" text-capitalize">accounting</span>
+                    </div>
+                </div>
+            </a>
+            <button data-bs-toggle="collapse" class="navbar-toggler btn-orange" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto rounded-4">
+                    <li class="nav-item"><a class="nav-link active" href="dashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        داشبورد
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="invoice.html">
+                            <i class="fas fa-file-alt"></i>
+                            فاکتورها
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customer.html">
+                            <i class="fas fa-user"></i>
+                            مشتری
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">
+                            <i class="fas fa-box"></i>
+                            محصولات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="setting/setting.html">
+                            <i class="fas fa-cog"></i>
+                            تنظیمات
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-buttons d-flex flex-column flex-md-row gap-3 mt-3">
+                    <button class="searchModalOpen btn btn-dark text-white text-center rounded-4 px-2 py-2 px-lg-3">
+                        <span class="d-lg-none me-2 ">جستجو</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <a href="invoice/addInvoice1.html"
+                       class="btn btn-orange text-dark d-flex justify-content-center align-items-center gap-2 p-2">
+                        افزودن فاکتور
+                        <span class="d-flex align-items-center justify-content-center bg-dark text-white plus-icon">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--    search modal start-->
+    <div class="search-modal modal-container d-none">
+        <form class="position-absolute translate-middle start-50 w-100 d-flex justify-content-center align-items-center gap-3"
+              action="" method="post">
+            <div class="w-100 d-flex bg-white p-4 border-radius-custom">
+                <div class="position-relative w-100">
+                    <input class="w-100 form-control border-radius-custom" type="text" placeholder="جستجو"
+                           aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass position-absolute top-50 translate-middle search-icon-input"></i>
+                </div>
+                <button class="btn btn-dark  px-md-5 border-radius-custom" type="submit">جستجو</button>
+            </div>
+            <button class="btn btn-close-modal" id="searchModalClose" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
+    </div>
+    <!--    search modal end-->
+
+
+</header>
+
+<main class="container-fluid mx-0 px-0 dashboard-page">
+    <!--    edit modal start-->
+    <div id="editProductModal" class="modal-container-order-edit d-none">
+        <div class="modal-content-section rounded-5">
+            <div class="modal-header-section">
+                <div class="col-12 row ">
+                    <p class="col-6 col-lg-2 my-auto d-flex align-items-center gap-2 fw-bold">
+                        <span class=" circle-btn-close d-flex justify-content-center align-items-center border border-white ">
+                            <i class="fa-solid fa-user text-black"></i>
+                        </span>
+                        <span>سعید اسکندریان</span>
+                    </p>
+                    <p class="col-6 col-lg-2 my-auto fw-bold">
+                        <span>آیدی سفارش:</span>
+                        <span>#125242</span>
+                    </p>
+                    <p class="col-6 col-lg-2 divider-vertical my-auto fw-bold">
+                        <span class="d-inline d-lg-none">تاریخ ثبت:</span>
+                        <span>1400/01/04</span>
+                    </p>
+                    <p class="col-6 col-lg-2 divider-vertical my-auto fw-bold">
+                        <i class="d-none d-lg-inline fa-regular fa-clock p-0 m-0"></i>
+                        <span>آخرین آپدیت: </span>
+                        <span>1400/01/04</span>
+                    </p>
+                </div>
+                <button class="btn circle-btn-close col-1 bg-white p-2 rounded-circle border position-absolute d-flex justify-content-center align-items-center "
+                        id="closeEditProductModalBtn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form class="row gap-3 mx-0 p-0 overflow-y-auto overflow-x-hidden" action="">
+                <h5 class="col-12 mt-2">اطلاعات سفارش</h5>
+                <!--                orders section start-->
+                <div class="row column-gap-5 col-12 row-gap-4 px-5">
+                    <div class="col-6 col-lg-2 border-radius-custom-btn border p-2 bg-white row gy-0 align-items-end pt-3">
+                        <div class="col row justify-content-center align-items-center">
+                            <p class="d-flex flex-column">
+                                <span class="col-12 text-black  fw-bolder"> قرص ها</span>
+                                <span class="col-12 text-gray ">golder teacher</span>
+                            </p>
+                            <p class="col-12 text-gray line-height-1">1گرم</p>
+                            <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                        </div>
+
+                        <button class="col-2 btn text-black line-height-1 ">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div class="col-6 col-lg-2 border-radius-custom-btn border p-2 bg-white row gy-0 align-items-end pt-3">
+                        <div class="col row justify-content-center align-items-center">
+                            <p class="d-flex flex-column">
+                                <span class="col-12 text-black  fw-bolder"> قرص ها</span>
+                                <span class="col-12 text-gray ">golder teacher</span>
+                            </p>
+                            <p class="col-12 text-gray line-height-1">1گرم</p>
+                            <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                        </div>
+
+                        <button class="col-2 btn text-black line-height-1 ">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div class="col-6 col-lg-2 border-radius-custom-btn border p-2 bg-white row gy-0 align-items-end pt-3">
+                        <div class="col row justify-content-center align-items-center">
+                            <p class="d-flex flex-column">
+                                <span class="col-12 text-black  fw-bolder"> قرص ها</span>
+                                <span class="col-12 text-gray ">golder teacher</span>
+                            </p>
+                            <p class="col-12 text-gray line-height-1">1گرم</p>
+                            <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                        </div>
+
+                        <button class="col-2 btn text-black line-height-1 ">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--                orders section end-->
+                <!--            modal gift section start -->
+                <div class="row px-5 justify-content-center justify-content-lg-start ">
+                    <div class="col-12 col-lg-4 modal-gift-card bg-light-gradient border-radius-custom-btn d-flex gap-5 align-items-center justify-content-center">
+                        <div class="">
+                            <p class="text-black line-height-1"> قرص ها</p>
+                            <p class="text-gray line-height-1">golder teacher</p>
+                            <p class="text-gray line-height-1">1گرم</p>
+                        </div>
+                        <i class="fa-solid fa-gift gift-icon-color "></i>
+                    </div>
+                </div>
+                <!--          modal gift section end  -->
+                <div class="row px-0 mx-0">
+                    <div class="col-12 col-lg-6 bg-dark justify-content-center px-3 py-3">
+                        <h6 class="text-white">
+                            آدرس:
+                        </h6>
+                        <p class="text-white">
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
+                            است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است،
+                        </p>
+                    </div>
+                    <div class="text-center text-lg-start py-3 col-6 col-lg-3 bg-light d-flex flex-column justify-content-center ">
+                        <p>
+                            <span>
+                                شماره :
+                            </span>
+                            <span>
+                                 09146728861
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                تلگرام :
+                            </span>
+                            <span>
+                                 t.me@saeed_sk
+                            </span>
+                        </p>
+                    </div>
+                    <div class="text-center text-lg-start py-3 col-6 col-lg-3 bg-light d-flex flex-column justify-content-center">
+                        <p>
+                            <span>
+                                ایمیل :
+                            </span>
+                            <span>
+                                 t@t.com
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                اینستا :
+                            </span>
+                            <span>
+                                -
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <!--            modal gift section end -->
+                <div class="col d-flex flex-column flex-lg-row gap-3 bg-light-gray rounded-4 py-2 mx-4 ">
+
+                    <div class="col row-last-item-radius text-center justify-content-center align-items-center p-4">
+                        <span class="h4 col-6 justify-content-end line-height-1 fw-bolder">Tom</span>
+                        <span dir="ltr" class="h1 line-height-1 text-orange">75</span>
+                        <p class="h6 text-secondary mt-1 ms-3 ">مجموع</p>
+                    </div>
+
+                    <hr class="divider">
+
+
+                    <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                        <span class="h4 col-6 justify-content-end line-height-1 fw-bolder">Tom</span>
+                        <span dir="ltr" class="h1 line-height-1">75</span>
+                        <p class="h6 text-secondary mt-1 ms-3 ">قیمت تمبر</p>
+                    </div>
+
+                    <hr class="divider">
+
+                    <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                        <span class="h4 col-6 justify-content-end line-height-1 fw-bolder">Tom</span>
+                        <span dir="ltr" class="h1 line-height-1">75</span>
+                        <p class="h6 text-secondary mt-1">قیمت بسته بندی</p>
+                    </div>
+
+                    <hr class="divider">
+
+
+                    <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                        <span class="h4 col-6 justify-content-end line-height-1 fw-bolder">%</span>
+                        <span dir="ltr" class="h1 line-height-1">75</span>
+                        <p class="h6 text-secondary mt-1 ">تخفیف</p>
+                    </div>
+
+                    <hr class="divider">
+
+                    <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                        <span class="h4 col-6 justify-content-end line-height-1 text-secondary">%</span>
+                        <span dir="ltr" class="h1 line-height-1 text-secondary">75</span>
+                        <p class="h6 text-secondary mt-1 ms-3 text-secondary ">ارزش افزوده</p>
+                    </div>
+
+                    <div class="col bg-white rounded-4 row-last-item-radius text-center justify-content-center align-items-center p-4 px-5">
+                        <span class="h4 text-orange col-6 justify-content-end line-height-1">Tom</span>
+                        <span dir="ltr" class="h1 text-orange line-height-1">75</span>
+                        <p class="h6 text-secondary mt-1 ms-3 ">مجموع قیمت</p>
+                    </div>
+                </div>
+
+                <div class=" col-12 border-top pb-4 ">
+                    <label class="col-12 form-label text-gray fw-bolder" for="orderStatus">تغییر وضعیت سفارش</label>
+                    <div class="d-flex flex-column flex-lg-row gap-4 ps-lg-5 p-4">
+
+                        <div class="col-12 col-lg">
+                            <select name="orderStatus" id="orderStatus"
+                                    class="form-select rounded-4 py-4 mx-0 w-100 me-0 ms-0 ">
+                                <option value="lost">رد شده</option>
+                                <option value="waiting">انتظار</option>
+                                <option value="lost">تکمیل شده</option>
+                            </select>
+                        </div>
+                        <button class="col-12 col-lg btn btn-light border text-gray border-radius-custom-btn py-4">
+                            <span> دانلود فاکتور</span>
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <button class="col-12 col-lg btn btn-orange border-radius-custom-btn py-4">
+                            ذخیره و تغییر
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!--    edit modal end-->
+    <div class="row mx-auto justify-content-center column-gap-3 p-0 p-lg-4 p-xl-5 row-gap-4">
+        <div class="col-12 col-lg-3 d-flex flex-column gap-3 mt-3 mt-lg-0">
+            <div class="d-flex flex-column gap-5 justify-content-between align-items-center border-radius-custom-btn edge-gradient p-3">
+                <div class="col-12 p-4 border-radius-custom-btn d-flex flex-column gap-2">
+                    <h4 class="text-dark fw-bold text-center">4242300</h4>
+                    <h6 class="text-dark fw-bold text-center">مجموع سفارشات</h6>
+                </div>
+
+                <div class="col-12 bg-gradient-dark-vertical p-4 border-radius-custom-btn d-flex flex-column gap-2">
+                    <h4 dir="ltr" class="text-orange fw-bold text-center">424230000 Tom</h4>
+                    <h6 class="text-white fw-bold text-center">مجموع درآمد فروش</h6>
+                </div>
+            </div>
+            <div class="d-flex flex-column gap-5 justify-content-between align-items-center border-radius-custom-btn bg-gradient-green-light-vertical p-3">
+                <div class="col-12 p-4 border-radius-custom-btn d-flex flex-column gap-2">
+                    <h4 dir="ltr" class="text-dark fw-bold text-center">4242300 Tom</h4>
+                    <h6 class="text-dark fw-bold text-center">مجموع سفارشات</h6>
+                </div>
+            </div>
+            <div class="d-flex flex-column gap-5 justify-content-between align-items-center border-radius-custom-btn bg-gradient-orange p-3">
+                <div class="col-12 p-4 border-radius-custom-btn d-flex flex-column gap-2">
+                    <h4 dir="ltr" class="text-dark fw-bold text-center">4242300 Tom</h4>
+                    <h6 class="text-dark fw-bold text-center">مجموع سفارشات</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-8 mx-0 d-flex flex-column gap-3 p-0 column-gap-5 justify-content-between">
+            <div class="main-section p-lg-4 border-radius-custom gap-5">
+                <!--                form select date and category start-->
+                <form action="" class="col-12 d-flex flex-lg-row flex-column gap-2  justify-content-between ">
+                    <div class="col-12 col-lg-2">
+                        <select class="py-3 text-black form-select fw-bolder" name="categoryName" id="categoryName">
+                            <option value="">قارج خشک</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-lg-3">
+                        <select class="py-3 text-black form-select fw-bolder text-gray" name="date" id="date">
+                            <option value="">1402/01/05 - 1402/01/30</option>
+                        </select>
+                    </div>
+                </form>
+                <!--                form select date and category end-->
+                <div class="col-12 row-gap-5 row bg-gradient-dark  border-radius-custom d-flex justify-content-between mt-3 py-3 py-lg-5 px-3 ">
+                    <div class="col-12 col-lg d-flex flex-column">
+                        <p class="text-light  short-underline fw-bold">مجموعه آمار</p>
+                        <h6 class="text-orange fw-bolder line-height-1"> قارچ خشک</h6>
+                    </div>
+                    <div class="col-12 col-lg-4 d-flex gap-3 rounded-3 justify-content-lg-center align-items-center">
+                        <div class="col-3 d-flex flex-column gap-2 divider-block ">
+                            <h5 class="fw-bolder text-white line-height-1">300 kg</h5>
+                            <p class="text-gray line-height-1">میانگین</p>
+                        </div>
+                        <div class="col-3 d-flex flex-column gap-2 justify-content-center divider-block">
+                            <h5 class="fw-bolder text-white line-height-1">300 kg</h5>
+                            <p class="text-gray line-height-1">خریدار</p>
+                        </div>
+                        <div class="col-3 d-flex flex-column gap-2 divider-block">
+                            <h5 class="fw-bolder text-white line-height-1">300 kg</h5>
+                            <p class="text-gray line-height-1">فروش</p>
+                        </div>
+                        <div class="col-3 d-flex flex-column gap-2">
+                            <h5 class="fw-bolder text-white line-height-1">300 kg</h5>
+                            <p class="text-gray line-height-1">سود</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col d-flex gap-3 flex-column flex-lg-row px-0 mt-3">
+                    <div class="col bg-gradient-green-light p-3 border-radius-custom d-flex flex-column justify-content-between ">
+                        <div class="col-12">
+                            <p class="p-2 short-underline fw-bold">محصول اول</p>
+                        </div>
+
+                        <div class="d-flex gap-3 rounded-3 py-2 align-items-center ps-3">
+                            <div class="col-3 d-flex flex-column gap-2 divider-block ">
+                                <h5 class="fw-bolder line-height-1 text-dark">300 kg</h5>
+                                <p class="text-gray line-height-1">میانگین</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 justify-content-center divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">خریدار</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">فروش</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">سود</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col  bg-gradient-green p-3 border-radius-custom d-flex flex-column justify-content-between ">
+                        <div class="col-12">
+                            <p class="p-2 short-underline fw-bold">محصول دوم</p>
+                        </div>
+
+                        <div class="d-flex gap-3 rounded-3 py-2 align-items-center ps-3">
+                            <div class="col-3 d-flex flex-column gap-2 divider-block ">
+                                <h5 class="fw-bolder line-height-1 text-dark">300 kg</h5>
+                                <p class="text-gray line-height-1">میانگین</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 justify-content-center divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">خریدار</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">فروش</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">سود</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex gap-3 flex-column flex-lg-row px-0 mt-3">
+                    <div class="col bg-gradient-blue p-3 border-radius-custom d-flex flex-column justify-content-between ">
+                        <div class="col-12">
+                            <p class="p-2 short-underline fw-bold">محصول دوم</p>
+                        </div>
+
+                        <div class="d-flex gap-3 rounded-3 py-2 align-items-center ps-3">
+                            <div class="col-3 d-flex flex-column gap-2 divider-block ">
+                                <h5 class="fw-bolder line-height-1 text-dark">300 kg</h5>
+                                <p class="text-gray line-height-1">میانگین</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 justify-content-center divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">خریدار</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">فروش</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">سود</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col bg-gradient-blue p-3 border-radius-custom d-flex flex-column justify-content-between ">
+                        <div class="col-12">
+                            <p class="p-2 short-underline fw-bold">محصول دوم</p>
+                        </div>
+
+                        <div class="d-flex gap-3 rounded-3 py-2 align-items-center ps-3">
+                            <div class="col-3 d-flex flex-column gap-2 divider-block ">
+                                <h5 class="fw-bolder line-height-1 text-dark">300 kg</h5>
+                                <p class="text-gray line-height-1">میانگین</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 justify-content-center divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">خریدار</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2 divider-block">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">فروش</p>
+                            </div>
+                            <div class="col-3 d-flex flex-column gap-2">
+                                <h5 class="fw-bolder text-dark line-height-1">300 kg</h5>
+                                <p class="text-gray line-height-1">سود</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--        table start -->
+            <div class="col-12 row bg-light rounded-4 table-container table-responsive mx-auto mb-4 border">
+                <table class="rounded-top-4 overflow-hidden ">
+                    <thead class="rounded table-header">
+                    <tr class="text-center rounded  text-secondary">
+                        <th>نام</th>
+                        <th>آیدی سفارش</th>
+                        <th>تاریخ</th>
+                        <th>تعداد سفارش</th>
+                        <th>کادو</th>
+                        <th>تخفیف</th>
+                        <th>عملکرد</th>
+                        <th>شرایط</th>
+                        <th>قیمت</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td class="text-capitalize fw-bold text-nowrap">
+                            <i class="fa-solid fa-user ms-3"></i>
+                            <span>
+                                سعیداسکندریان
+                            </span>
+                        </td>
+                        <td class="text-secondary">
+                            34141
+                        </td>
+                        <td class="text-secondary">
+                            1394/01/05
+                        </td>
+                        <td class="text-secondary">
+                            6 عدد
+                        </td>
+                        <td class="text-secondary">-</td>
+                        <td class="text-secondary">
+                            <span>%</span>
+                            <span>9</span>
+                        </td>
+                        <td class="text-orange">20.2 تومان</td>
+                        <td>
+                            <div class="bg-danger py-1 rounded-2 text-light">رد شده</div>
+                        </td>
+                        <td class="">
+                            <button class="editProductOpenBtn mx-auto bg-white btn rounded-3 text-secondary border-0 d-flex justify-content-center align-items-center">
+                                <span class="d-none d-lg-block">مدیریت سفارش</span>
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="text-capitalize fw-bold text-nowrap">
+                            <i class="fa-solid fa-user ms-3"></i>
+                            <span>
+                                سعیداسکندریان
+                            </span>
+                        </td>
+                        <td class="text-secondary">
+                            34141
+                        </td>
+                        <td class="text-secondary">
+                            1394/01/05
+                        </td>
+                        <td class="text-secondary">
+                            6 عدد
+                        </td>
+                        <td class="text-secondary">-</td>
+                        <td class="text-secondary">
+                            <span>%</span>
+                            <span>9</span>
+                        </td>
+                        <td class="text-orange">20.2 تومان</td>
+                        <td>
+                            <div class="bg-danger py-1 rounded-2 text-light">رد شده</div>
+                        </td>
+                        <td class="">
+                            <button class="editProductOpenBtn mx-auto bg-white btn rounded-3 text-secondary border-0 d-flex justify-content-center align-items-center">
+                                <span class="d-none d-lg-block">مدیریت سفارش</span>
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="text-capitalize fw-bold text-nowrap">
+                            <i class="fa-solid fa-user ms-3"></i>
+                            <span>
+                                سعیداسکندریان
+                            </span>
+                        </td>
+                        <td class="text-secondary">
+                            34141
+                        </td>
+                        <td class="text-secondary">
+                            1394/01/05
+                        </td>
+                        <td class="text-secondary">
+                            6 عدد
+                        </td>
+                        <td class="text-secondary">-</td>
+                        <td class="text-secondary">
+                            <span>%</span>
+                            <span>9</span>
+                        </td>
+                        <td class="text-orange">20.2 تومان</td>
+                        <td>
+                            <div class="bg-danger py-1 rounded-2 text-light">رد شده</div>
+                        </td>
+                        <td class="">
+                            <button class="editProductOpenBtn mx-auto bg-white btn rounded-3 text-secondary border-0 d-flex justify-content-center align-items-center">
+                                <span class="d-none d-lg-block">مدیریت سفارش</span>
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="text-capitalize fw-bold text-nowrap">
+                            <i class="fa-solid fa-user ms-3"></i>
+                            <span>
+                                سعیداسکندریان
+                            </span>
+                        </td>
+                        <td class="text-secondary">
+                            34141
+                        </td>
+                        <td class="text-secondary">
+                            1394/01/05
+                        </td>
+                        <td class="text-secondary">
+                            6 عدد
+                        </td>
+                        <td class="text-secondary">-</td>
+                        <td class="text-secondary">
+                            <span>%</span>
+                            <span>9</span>
+                        </td>
+                        <td class="text-orange">20.2 تومان</td>
+                        <td>
+                            <div class="bg-danger py-1 rounded-2 text-light">رد شده</div>
+                        </td>
+                        <td class="">
+                            <button class="editProductOpenBtn mx-auto bg-white btn rounded-3 text-secondary border-0 d-flex justify-content-center align-items-center">
+                                <span class="d-none d-lg-block">مدیریت سفارش</span>
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="text-capitalize fw-bold text-nowrap">
+                            <i class="fa-solid fa-user ms-3"></i>
+                            <span>
+                                سعیداسکندریان
+                            </span>
+                        </td>
+                        <td class="text-secondary">
+                            34141
+                        </td>
+                        <td class="text-secondary">
+                            1394/01/05
+                        </td>
+                        <td class="text-secondary">
+                            6 عدد
+                        </td>
+                        <td class="text-secondary">-</td>
+                        <td class="text-secondary">
+                            <span>%</span>
+                            <span>9</span>
+                        </td>
+                        <td class="text-orange">20.2 تومان</td>
+                        <td>
+                            <div class="bg-danger py-1 rounded-2 text-light">رد شده</div>
+                        </td>
+                        <td class="">
+                            <button class="editProductOpenBtn mx-auto bg-white btn rounded-3 text-secondary border-0 d-flex justify-content-center align-items-center">
+                                <span class="d-none d-lg-block">مدیریت سفارش</span>
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!--        table end -->
+        </div>
+    </div>
+</main>
+</body>
+</html>

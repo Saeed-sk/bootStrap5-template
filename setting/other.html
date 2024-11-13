@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>تنظیمات - موارد دیگر </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css">
+    <!---->
+    <!--    Bootstrap Js-->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!---->
+    <!--    jquery-->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <!--    -->
+    <!--    font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!---->
+
+    <!--    global css style link -->
+    <link rel="stylesheet" href="../assets/style.css">
+    <!---->
+
+    <!--    local js link-->
+    <script src="../assets/app.js"></script>
+    <!--    local js link-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink navbar-light" id="mainNav">
+        <div class="container-fluid mx-lg-5">
+            <a class="navbar-brand d-flex align-items-center " href="/">
+                <div class="logo d-flex ">
+                    <img class="logo-image" src="../assets/images/logo.png" alt="logo">
+                    <div class="d-flex flex-column logo-text">
+                        <span class=" text-uppercase d-flex">
+                            <strong class="text-warning">
+                                Magic
+                            </strong>
+                            <strong>
+                                shoroomp
+                            </strong>
+
+                        </span>
+                        <span class=" text-capitalize">accounting</span>
+                    </div>
+                </div>
+            </a>
+            <button data-bs-toggle="collapse" class="navbar-toggler btn-orange" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto rounded-4">
+                    <li class="nav-item"><a class="nav-link" href="../dashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        داشبورد
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../invoice.html">
+                            <i class="fas fa-file-alt"></i>
+                            فاکتورها
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../customer.html">
+                            <i class="fas fa-user"></i>
+                            مشتری
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../products.html">
+                            <i class="fas fa-box"></i>
+                            محصولات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="setting.html">
+                            <i class="fas fa-cog"></i>
+                            تنظیمات
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-buttons d-flex flex-column flex-md-row gap-3 mt-3">
+                    <button class="searchModalOpen btn btn-dark text-white text-center rounded-4 px-2 py-2 px-lg-3">
+                        <span class="d-lg-none me-2 ">جستجو</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <a href="../invoice/addInvoice1.html"
+                       class="btn btn-orange text-dark d-flex justify-content-center align-items-center gap-2 p-2">
+                        افزودن فاکتور
+                        <span class="d-flex align-items-center justify-content-center bg-dark text-white plus-icon">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--    search modal start-->
+    <div class="search-modal modal-container d-none">
+        <form class="position-absolute translate-middle start-50 w-100 d-flex justify-content-center align-items-center gap-3"
+              action="" method="post">
+            <div class="w-100 d-flex bg-white p-4 border-radius-custom">
+                <div class="position-relative w-100">
+                    <input class="w-100 form-control border-radius-custom" type="text" placeholder="جستجو"
+                           aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass position-absolute top-50 translate-middle search-icon-input"></i>
+                </div>
+                <button class="btn btn-dark  px-md-5 border-radius-custom" type="submit">جستجو</button>
+            </div>
+            <button class="btn btn-close-modal" id="searchModalClose" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
+    </div>
+    <!--    search modal end-->
+
+
+</header>
+
+<main class="container-fluid mx-auto setting-page payment-page">
+    <!--        setting links start -->
+    <!--        setting links end -->
+    <section class="row mt-5 gap-5 justify-content-center align-items-center">
+        <div class="col-lg-2 col-12 d-flex flex-column gap-3 p-5 main-section border-radius-custom justify-content-center">
+            <a class="text-dark gap-1" href="./setting.html">
+                <i class="fa-solid fa-circle-dot text-warning"></i>
+                <span class="fw-bolder mb-1">رمز عبور</span>
+                <i class="fa-solid fa-angles-left next-icon"></i>
+            </a>
+            <a class="text-dark gap-1" href="./payment.html">
+                <i class="fa-solid fa-circle-dot text-warning"></i>
+                <span class="fw-bolder mb-1">پرداخت</span>
+                <i class="fa-solid fa-angles-left next-icon"></i>
+            </a>
+
+            <a class="text-dark gap-1" href="./unit.html">
+                <i class="fa-solid fa-circle-dot text-warning "></i>
+                <span class="fw-bolder mb-1">واحد</span>
+                <i class="fa-solid fa-angles-left next-icon"></i>
+            </a>
+
+            <a class="text-dark gap-1" href="other.html">
+                <i class="fa-solid fa-circle-dot text-warning "></i>
+                <span class="fw-bolder mb-1">سایر</span>
+                <i class="fa-solid fa-angles-left next-icon"></i>
+            </a>
+
+        </div>
+        <div class="col-lg-8 col-12 d-flex flex-column gap-3 p-5 main-section border-radius-custom  justify-content-center align-items-center">
+            <h4 class="col text-danger">هیچ دیتایی برای نمایش در این صفحه وجود ندارد</h4>
+        </div>
+
+    </section>
+</main>
+</body>
+</html>

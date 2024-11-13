@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>فاکتور </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css">
+    <!---->
+    <!--    Bootstrap Js-->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!---->
+    <!--    jquery-->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <!--    -->
+    <!--    font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!---->
+
+    <!--    global css style link -->
+    <link rel="stylesheet" href="../assets/style.css">
+    <!---->
+
+    <!--    local js link-->
+    <script src="../assets/app.js"></script>
+    <!--    local js link-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink navbar-light" id="mainNav">
+        <div class="container-fluid mx-lg-5">
+            <a class="navbar-brand d-flex align-items-center " href="/">
+                <div class="logo d-flex ">
+                    <img class="logo-image" src="../assets/images/logo.png" alt="logo">
+                    <div class="d-flex flex-column logo-text">
+                        <span class=" text-uppercase d-flex">
+                            <strong class="text-warning">
+                                Magic
+                            </strong>
+                            <strong>
+                                shoroomp
+                            </strong>
+
+                        </span>
+                        <span class=" text-capitalize">accounting</span>
+                    </div>
+                </div>
+            </a>
+            <button data-bs-toggle="collapse" class="navbar-toggler btn-orange" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto rounded-4">
+                    <li class="nav-item"><a class="nav-link" href="../dashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        داشبورد
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../invoice.html">
+                            <i class="fas fa-file-alt"></i>
+                            فاکتورها
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../customer.html">
+                            <i class="fas fa-user"></i>
+                            مشتری
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../products.html">
+                            <i class="fas fa-box"></i>
+                            محصولات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../setting/setting.html">
+                            <i class="fas fa-cog"></i>
+                            تنظیمات
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-buttons d-flex flex-column flex-md-row gap-3 mt-3">
+                    <button class="searchModalOpen btn btn-dark text-white text-center rounded-4 px-2 py-2 px-lg-3">
+                        <span class="d-lg-none me-2 ">جستجو</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <a href="addInvoice1.html" class="btn btn-orange text-dark d-flex justify-content-center align-items-center gap-2 p-2">
+                        افزودن فاکتور
+                        <span class="d-flex align-items-center justify-content-center bg-dark text-white plus-icon">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--    search modal start-->
+    <div class="search-modal modal-container d-none">
+        <form class="position-absolute translate-middle start-50 w-100 d-flex justify-content-center align-items-center gap-3"
+              action="" method="post">
+            <div class="w-100 d-flex bg-white p-4 border-radius-custom">
+                <div class="position-relative w-100">
+                    <input class="w-100 form-control border-radius-custom" type="text" placeholder="جستجو"
+                           aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass position-absolute top-50 translate-middle search-icon-input"></i>
+                </div>
+                <button class="btn btn-dark  px-md-5 border-radius-custom" type="submit">جستجو</button>
+            </div>
+            <button class="btn btn-close-modal" id="searchModalClose" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
+    </div>
+    <!--    search modal end-->
+
+
+</header>
+<main class="container-fluid px-0 py-5">
+    <!--    add product to invoice modal start-->
+    <div id="addProductToInvoiceModal" class="modal-container d-none">
+        <div class="modal-content-section container rounded-5 overflow-hidden ">
+            <div class="modal-header-section col-12 row w-auto justify-content-between align-items-center ">
+                <h6 class="col-3 text-first-section text-nowrap">افزودن محصول</h6>
+                <button class="btn circle-btn-close col-1 bg-white p-2 rounded-circle border position-absolute "
+                        id="addProductInInvoiceCloseBtn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form class="row p-3" action="">
+                <div class="col-12">
+                    <label class="form-label text-gray" for="productAdd">محصول</label>
+                    <select class="form-select p-2 text-gray" name="productAdd" id="productAdd">
+                        <option value="">قرص ها</option>
+                        <option value="">قرص ها</option>
+                        <option value="">قرص ها</option>
+                    </select>
+                </div>
+                <div class="col-6 ">
+                    <label class="form-label text-gray" for="weight">وزن</label>
+                    <select class="form-select p-2 text-gray" name="productAdd" id="weight">
+                        <option value="">1 گرم</option>
+                        <option value="">2 گرم</option>
+                        <option value="">3 گرم</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label text-gray" for="race">نوع</label>
+                    <input class="form-control p-2" name="race" id="race" type="text">
+                </div>
+                <button type="submit" class="btn btn-orange text-white my-4 p-3 rounded-4">
+                    افزودن
+                </button>
+            </form>
+        </div>
+    </div>
+    <!--    add product to invoice modal end-->
+
+
+    <!--    variable product to invoice modal start-->
+    <div id="variableProductToInvoiceModal" class="modal-container d-none">
+        <div class="modal-content-section container rounded-5 overflow-hidden ">
+            <div class="modal-header-section col-12 row w-auto justify-content-between align-items-center ">
+                <h6 class="col-3 text-first-section text-nowrap">محصول متغیر</h6>
+                <button class="btn circle-btn-close col-1 bg-white p-2 rounded-circle border position-absolute "
+                        id="variableProductToInvoiceCloseBtn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form class="row p-3" action="">
+                <div class="col-12">
+                    <label class="form-label text-gray" for="productName">محصول</label>
+                    <input type="text" name="productName" id="productName" class="form-control py-2">
+                </div>
+                <div class="col-6">
+                    <label class="form-label text-gray" for="weight">وزن</label>
+                    <input type="text" name="weight" id="weight" class="form-control py-2">
+                </div>
+                <div class="col-6">
+                    <label class="form-label text-gray" for="price">قیمت</label>
+                    <input class="form-control p-2" name="price" id="price" type="text">
+                </div>
+                <button type="submit" class="btn btn-orange text-white my-4 p-3 rounded-4">
+                    افزودن
+                </button>
+            </form>
+        </div>
+    </div>
+    <!--    variable product to invoice modal end-->
+
+
+    <section class="main-section container rounded-3 rounded-lg-0 rounded-lg-5 mx-auto my-5 p-5">
+        <h5 class="text-first-section">سفارش جدید</h5>
+        <form class="p-0" action="" method="post">
+            <!--            second page start-->
+            <div class="row " id="invoiceSecondPage">
+                <div class="mt-4 d-flex justify-content-center justify-content-lg-start gap-3 ">
+                    <button id="addProductInInvoiceOpenBtn"
+                            class="btn border-dash text-dark border-dark rounded-3 add-product-btn bg-white">
+                        <span>اضافه کردن محصول</span>
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </button>
+                    <button id="variableProductInInvoiceOpenBtn"
+                            class="btn border-dash border-secondary text-secondary rounded-3 text-gray add-product-btn">
+                        محصولات متغیر
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </button>
+                </div>
+                <div class="row p-4 justify-content-center justify-content-lg-start text-start">
+                    <!--                   hint: add product number-->
+                    <h6 class="row form-label text-start text-gray justify-content-start">محصولات اضافه شده(3)</h6>
+                    <!--                    product cards show start-->
+                    <div class="row gap-2 gap-lg-5 justify-content-center justify-content-lg-start">
+                        <div class=" col-12 col-lg-3 p-3 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                            <div class="col-8">
+                                <p class="col-12 text-black line-height-1"> قرص ها</p>
+                                <p class="col-12 text-gray line-height-1">golder teacher</p>
+                                <p class="col-12 text-gray line-height-1">1گرم</p>
+                                <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                            </div>
+
+                            <button class="col-2 btn  text-black line-height-1 ">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+                        <div class="col-12 col-lg-3 p-3 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                            <div class="col-6">
+                                <p class="col-12 text-black line-height-1"> قرص ها</p>
+                                <p class="col-12 text-gray line-height-1">golder teacher</p>
+                                <p class="col-12 text-gray line-height-1">1گرم</p>
+                                <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                            </div>
+
+                            <button class="col-2 btn  text-black line-height-1 ">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+                        <div class="col-12 col-lg-3 p-3 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                            <div class="col-6">
+                                <p class="col-12 text-black line-height-1"> قرص ها</p>
+                                <p class="col-12 text-gray line-height-1">golder teacher</p>
+                                <p class="col-12 text-gray line-height-1">1گرم</p>
+                                <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                            </div>
+
+                            <button class="col-2 btn  text-black line-height-1 ">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <!--                    product cards show end-->
+                </div>
+
+                <hr class="border-white border-2 my-3">
+                <div class="w-100 row flex-column-reverse flex-lg-row justify-content-between gap-3 gap-lg-0">
+                    <a href="addInvoice1.html"
+                       class="btn btn-outline-secondary px-5 col-lg-3 border-radius-custom-btn">
+                        بازگشت به عقب
+                    </a>
+                    <a href="addInvoice3.html" class="btn btn-orange px-5 col-lg-3 border-radius-custom-btn">
+                        بعدی
+                    </a>
+                </div>
+            </div>
+            <!--            second page end -->
+        </form>
+    </section>
+</main>
+</body>
+</html>

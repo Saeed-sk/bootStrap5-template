@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "accordion-js": "^3.3.4",
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "persian-datepicker": "^1.2.0"
+  }
+}

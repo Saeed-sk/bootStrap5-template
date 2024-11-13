@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>ورود</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css">
+    <!---->
+    <!--    Bootstrap Js-->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!---->
+    <!--    jquery-->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <!--    -->
+    <!--    font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!---->
+
+    <!--    global css style link -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <!---->
+
+    <!--    local js link-->
+    <script src="./assets/app.js"></script>
+    <!--    local js link-->
+</head>
+<body>
+<section class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+    <div class="login-card p-5">
+        <div class="mb-3 password-input">
+            <label class="form-label fw-bold pe-1 pb-1 " for="password">رمز عبور</label>
+            <div class="w-100 h-100 d-flex position-relative ">
+                <i class="fa-solid fa-unlock-keyhole position-absolute top-50 translate-middle password-lock-icon" ></i>
+                <input type="password" class="border-radius-custom w-100 h-100 py-3" id="password" placeholder=". . . . . . .">
+                <i class="fas fa-eye toggle-password position-absolute top-50 translate-middle toggle-password"></i>
+            </div>
+        </div>
+
+        <div class="forgot-password w-100 text-start ">
+            <a class="text-decoration-none" href="#">فراموشی رمز عبور؟</a>
+        </div>
+
+        <button class="btn btn-orange mt-4 border-radius-custom py-3 col-12">ورود</button>
+    </div>
+</section>
+
+
+</body>
+</html>

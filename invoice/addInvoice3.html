@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>فاکتور </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css">
+    <!---->
+    <!--    Bootstrap Js-->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!---->
+    <!--    jquery-->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <!--    -->
+    <!--    font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!---->
+
+    <!--    global css style link -->
+    <link rel="stylesheet" href="../assets/style.css">
+    <!---->
+
+    <!--    local js link-->
+    <script src="../assets/app.js"></script>
+    <!--    local js link-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md sticky-top navbar-shrink navbar-light" id="mainNav">
+        <div class="container-fluid mx-lg-5">
+            <a class="navbar-brand d-flex align-items-center " href="/">
+                <div class="logo d-flex ">
+                    <img class="logo-image" src="../assets/images/logo.png" alt="logo">
+                    <div class="d-flex flex-column logo-text">
+                        <span class=" text-uppercase d-flex">
+                            <strong class="text-warning">
+                                Magic
+                            </strong>
+                            <strong>
+                                shoroomp
+                            </strong>
+
+                        </span>
+                        <span class=" text-capitalize">accounting</span>
+                    </div>
+                </div>
+            </a>
+            <button data-bs-toggle="collapse" class="navbar-toggler btn-orange" data-bs-target="#navcol-1"><span
+                    class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav mx-auto rounded-4">
+                    <li class="nav-item"><a class="nav-link" href="../dashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        داشبورد
+                    </a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../invoice.html">
+                            <i class="fas fa-file-alt"></i>
+                            فاکتورها
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="../customer.html">
+                            <i class="fas fa-user"></i>
+                            مشتری
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../products.html">
+                            <i class="fas fa-box"></i>
+                            محصولات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../setting/setting.html">
+                            <i class="fas fa-cog"></i>
+                            تنظیمات
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-buttons d-flex flex-column flex-md-row gap-3 mt-3">
+                    <button class="searchModalOpen btn btn-dark text-white text-center rounded-4 px-2 py-2 px-lg-3">
+                        <span class="d-lg-none me-2 ">جستجو</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <a href="addInvoice1.html" class="btn btn-orange text-dark d-flex justify-content-center align-items-center gap-2 p-2">
+                        افزودن فاکتور
+                        <span class="d-flex align-items-center justify-content-center bg-dark text-white plus-icon">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--    search modal start-->
+    <div class="search-modal modal-container d-none">
+        <form class="position-absolute translate-middle start-50 w-100 d-flex justify-content-center align-items-center gap-3"
+              action="" method="post">
+            <div class="w-100 d-flex bg-white p-4 border-radius-custom">
+                <div class="position-relative w-100">
+                    <input class="w-100 form-control border-radius-custom" type="text" placeholder="جستجو"
+                           aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass position-absolute top-50 translate-middle search-icon-input"></i>
+                </div>
+                <button class="btn btn-dark  px-md-5 border-radius-custom" type="submit">جستجو</button>
+            </div>
+            <button class="btn btn-close-modal" id="searchModalClose" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </form>
+    </div>
+    <!--    search modal end-->
+
+
+</header>
+
+<main class="container-fluid px-0 py-5">
+    <!--    gift remove modal start-->
+    <div id="gitRemoveConfirmModal" class="modal-container d-none">
+        <div class="modal-content-section container rounded-5 p-2">
+            <div class="trash-modal-icon-wrapper">
+                <i class="fa-solid fa-trash-can trash-modal-icon"></i>
+            </div>
+            <form class="row p-3 gap-5 mt-5 text-center justify-content-center align-items-center" action="">
+                <h5 class="col-12 mt-2">آیا از حذف این مورد مطمئن هستید؟</h5>
+                <div class="row gap-2 mt-2">
+                    <button id="gitRemoveConfirmClose" class="btn btn-dark col border-radius-custom-btn">خیر</button>
+                    <button type="submit" class="btn btn-orange col border-radius-custom-btn">بله</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--    gift remove modal end-->
+
+    <!--  advice add first section start-->
+    <section class="main-section container rounded-3 rounded-lg-0 rounded-lg-5  my-5 p-5">
+        <h3 class="text-first-section position-relative">
+            <span class="underline-text position-absolute"></span>
+            تایید نهایی
+        </h3>
+        <form class="row gap-3 justify-content-center" action="" method="post">
+            <!--        orders show section start -->
+            <h6 class="row text-start text-gray mt-4"> سفارش ها (3)</h6>
+            <section class="col-12 row gap-3 gap-lg-5 justify-content-center justify-content-lg-start">
+                <div class=" col-12 col-lg-3 p-3 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                    <div class="col-8">
+                        <p class="col-12 text-black line-height-1"> قرص ها</p>
+                        <p class="col-12 text-gray line-height-1">golder teacher</p>
+                        <p class="col-12 text-gray line-height-1">1گرم</p>
+                        <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                    </div>
+
+                    <button class="col-2 btn  text-black line-height-1 ">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+                <div class="col-12 col-lg-3 p-3 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                    <div class="col-6">
+                        <p class="col-12 text-black line-height-1"> قرص ها</p>
+                        <p class="col-12 text-gray line-height-1">golder teacher</p>
+                        <p class="col-12 text-gray line-height-1">1گرم</p>
+                        <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                    </div>
+
+                    <button class="col-2 btn  text-black line-height-1 ">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+                <div class="col-12 col-lg-3 p-3 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                    <div class="col-6">
+                        <p class="col-12 text-black line-height-1"> قرص ها</p>
+                        <p class="col-12 text-gray line-height-1">golder teacher</p>
+                        <p class="col-12 text-gray line-height-1">1گرم</p>
+                        <p class="col-12 text-orange line-height-1 ">500 تومان</p>
+                    </div>
+
+                    <button class="col-2 btn  text-black line-height-1 ">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+
+            </section>
+            <!--        orders show section end -->
+
+
+            <!--           input sections start -->
+            <div class="col-12 row gap-3 gap-lg-5 justify-content-center justify-content-lg-start ps-lg-0">
+                <div class="col-12 col-lg-3 row justify-content-start ">
+                    <label class="form-label text-gray" for="paymentMethod">شیوه پرداخت</label>
+                    <select class="form-select py-3 text-gray rounded-3" name="paymentMethod" id="paymentMethod">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-lg-2 col-lg-2 row">
+                    <label class="form-label text-gray" for="packageCosts">قیمت بسته بندی</label>
+                    <input class="form-control py-3 text-gray rounded-3" name="packageCosts" id="packageCosts"
+                           type="text">
+                </div>
+
+                <div class="col-12 col-lg-2 row">
+                    <label class="form-label text-gray" for="stampCosts">قیمت تمبر</label>
+                    <input class="form-control py-3 text-gray rounded-3" name="stampCosts" id="stampCosts" type="text">
+                </div>
+
+                <div id="discountBtn" class="col-6 col-lg-2 row justify-content-center align-items-center">
+                    <label class="form-label text-gray" for="discount">تخفیف</label>
+                    <div class="col-12 row rounded-3 py-2 bg-white discount-input-wrapper">
+                        <div class="bg-white rounded-3 py-2 justify-content-center d-flex">
+                            <span>%</span>
+                            <input class="border-0 rounded-0 discount-input bg-transparent " name="discount"
+                                   id="discount" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ExtraBtn" class="col-6 col-lg-2 row justify-content-center align-items-center">
+                    <label class="form-label text-gray" for="extra">ارزش افزوده</label>
+                    <div class="col-12 row rounded-3 py-2 bg-white discount-input-wrapper">
+                        <div class="bg-white rounded-3 py-2 justify-content-center d-flex">
+                            <span>%</span>
+                            <input class="border-0 rounded-0 discount-input bg-transparent " name="extra" id="extra"
+                                   type="text">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--           input sections end -->
+
+            <!--            add gift section start -->
+            <div class="col-12 row gap-3 gap-lg-5 justify-content-center justify-content-lg-start align-items-center ">
+                <button class="col col-lg-2 py-4 row btn btn-outline border-dash text-white rounded-3 text-secondary bg-white">
+                    <i class="fa-solid fa-gift gift-icon-color col-12"></i>
+                    <span class="text-secondary col-12">افزودن کارت هدیه</span>
+                </button>
+                <div class=" col-12 col-lg-3 p-3 py-4 bg-white rounded-3 row gy-0 justify-content-between align-items-end">
+                    <div class="col-8 ">
+                        <p class="col-12 text-black line-height-1"> قرص ها</p>
+                        <p class="col-12 text-gray line-height-1">golder teacher</p>
+                        <p class="col-12 text-gray line-height-1">1گرم</p>
+                    </div>
+                    <button id="giftTrashOpenModal" class="col-2 btn text-black h-100 align-items-center border-0">
+                        <i class="fa-regular fa-trash-can text-gray"></i>
+                    </button>
+                </div>
+            </div>
+            <!--            add gift section end  -->
+
+            <!--            total section start -->
+            <div class="col d-flex flex-column flex-lg-row gap-3 bg-light-gray rounded-3 py-2">
+
+                <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                    <span class="h4 col-6 justify-content-end line-height-1">Tom</span>
+                    <span dir="ltr" class="h1 line-height-1 text-orange">75</span>
+                    <p class="h6 text-secondary mt-1 ms-3 ">مجموع</p>
+                </div>
+
+                <hr class="divider">
+
+
+                <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                    <span class="h4 col-6 justify-content-end line-height-1">Tom</span>
+                    <span dir="ltr" class="h1 line-height-1">75</span>
+                    <p class="h6 text-secondary mt-1 ms-3 ">قیمت تمبر</p>
+                </div>
+
+                <hr class="divider">
+
+                <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                    <span class="h4 col-6 justify-content-end line-height-1">Tom</span>
+                    <span dir="ltr" class="h1 line-height-1">75</span>
+                    <p class="h6 text-secondary mt-1">قیمت بسته بندی</p>
+                </div>
+
+                <hr class="divider">
+
+
+                <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                    <span class="h4 col-6 justify-content-end line-height-1">%</span>
+                    <span dir="ltr" class="h1 line-height-1">75</span>
+                    <p class="h6 text-secondary mt-1 ">تخفیف</p>
+                </div>
+
+                <hr class="divider">
+
+                <div class="col rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4">
+                    <span class="h4 col-6 justify-content-end line-height-1 text-secondary">%</span>
+                    <span dir="ltr" class="h1 line-height-1 text-secondary">75</span>
+                    <p class="h6 text-secondary mt-1 ms-3 text-secondary ">ارزش افزوده</p>
+                </div>
+
+                <div class="col bg-white rounded-3 row-last-item-radius text-center justify-content-center align-items-center p-4 px-5">
+                    <span class="h4 text-orange col-6 justify-content-end line-height-1">Tom</span>
+                    <span dir="ltr" class="h1 text-orange line-height-1">75</span>
+                    <p class="h6 text-secondary mt-1 ms-3 ">مجموع قیمت</p>
+                </div>
+            </div>
+            <!--            total section end-->
+
+            <hr class="border-white border-2 my-3">
+            <div class="w-100 row flex-column-reverse flex-lg-row justify-content-between gap-3 gap-lg-0">
+                <a disabled
+                   class="btn btn-outline-secondary px-5 col-lg-3 border-radius-custom-btn">
+                    بازگشت به عقب
+                </a>
+                <a href="addInvoice2.html" class="btn btn-orange px-5 col-lg-3 border-radius-custom-btn">
+                    بعدی
+                </a>
+            </div>
+        </form>
+    </section>
+    <!--  advice add first section end-->
+</main>
+</body>
+</html>
